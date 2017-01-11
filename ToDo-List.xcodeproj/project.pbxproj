@@ -8,26 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		BCCCDE771E26464E0045F25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE761E26464E0045F25E /* AppDelegate.swift */; };
-		BCCCDE791E26464E0045F25E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE781E26464E0045F25E /* ViewController.swift */; };
 		BCCCDE7C1E26464E0045F25E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCCCDE7A1E26464E0045F25E /* Main.storyboard */; };
 		BCCCDE7E1E26464E0045F25E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCCCDE7D1E26464E0045F25E /* Assets.xcassets */; };
 		BCCCDE811E26464E0045F25E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCCCDE7F1E26464E0045F25E /* LaunchScreen.storyboard */; };
-		BCCCDE8B1E264B530045F25E /* AddTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE8A1E264B530045F25E /* AddTodoItemViewController.swift */; };
+		BCCCDE8B1E264B530045F25E /* AddTodoItemViewControllerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE8A1E264B530045F25E /* AddTodoItemViewControllerOLD.swift */; };
 		BCCCDE8D1E264C3F0045F25E /* TodoListTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE8C1E264C3F0045F25E /* TodoListTableTableViewController.swift */; };
 		BCCCDE8F1E264DE50045F25E /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE8E1E264DE50045F25E /* TodoItem.swift */; };
+		BCCCDE931E2670D60045F25E /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE921E2670D60045F25E /* AddItemTableViewController.swift */; };
+		BCCCDE951E268C500045F25E /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE941E268C500045F25E /* MapKitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BCCCDE731E26464E0045F25E /* ToDo-List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo-List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCCDE761E26464E0045F25E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BCCCDE781E26464E0045F25E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BCCCDE7B1E26464E0045F25E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BCCCDE7D1E26464E0045F25E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCCCDE801E26464E0045F25E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCCCDE821E26464E0045F25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BCCCDE8A1E264B530045F25E /* AddTodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTodoItemViewController.swift; path = ../AddTodoItemViewController.swift; sourceTree = "<group>"; };
+		BCCCDE8A1E264B530045F25E /* AddTodoItemViewControllerOLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTodoItemViewControllerOLD.swift; path = ../AddTodoItemViewControllerOLD.swift; sourceTree = "<group>"; };
 		BCCCDE8C1E264C3F0045F25E /* TodoListTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListTableTableViewController.swift; sourceTree = "<group>"; };
 		BCCCDE8E1E264DE50045F25E /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		BCCCDE921E2670D60045F25E /* AddItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
+		BCCCDE941E268C500045F25E /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,15 +62,16 @@
 		BCCCDE751E26464E0045F25E /* ToDo-List */ = {
 			isa = PBXGroup;
 			children = (
-				BCCCDE8A1E264B530045F25E /* AddTodoItemViewController.swift */,
+				BCCCDE8A1E264B530045F25E /* AddTodoItemViewControllerOLD.swift */,
 				BCCCDE761E26464E0045F25E /* AppDelegate.swift */,
-				BCCCDE781E26464E0045F25E /* ViewController.swift */,
 				BCCCDE7A1E26464E0045F25E /* Main.storyboard */,
 				BCCCDE7D1E26464E0045F25E /* Assets.xcassets */,
 				BCCCDE7F1E26464E0045F25E /* LaunchScreen.storyboard */,
 				BCCCDE821E26464E0045F25E /* Info.plist */,
 				BCCCDE8C1E264C3F0045F25E /* TodoListTableTableViewController.swift */,
 				BCCCDE8E1E264DE50045F25E /* TodoItem.swift */,
+				BCCCDE921E2670D60045F25E /* AddItemTableViewController.swift */,
+				BCCCDE941E268C500045F25E /* MapKitViewController.swift */,
 			);
 			path = "ToDo-List";
 			sourceTree = "<group>";
@@ -145,11 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCCDE951E268C500045F25E /* MapKitViewController.swift in Sources */,
 				BCCCDE8F1E264DE50045F25E /* TodoItem.swift in Sources */,
-				BCCCDE791E26464E0045F25E /* ViewController.swift in Sources */,
+				BCCCDE931E2670D60045F25E /* AddItemTableViewController.swift in Sources */,
 				BCCCDE771E26464E0045F25E /* AppDelegate.swift in Sources */,
 				BCCCDE8D1E264C3F0045F25E /* TodoListTableTableViewController.swift in Sources */,
-				BCCCDE8B1E264B530045F25E /* AddTodoItemViewController.swift in Sources */,
+				BCCCDE8B1E264B530045F25E /* AddTodoItemViewControllerOLD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +313,7 @@
 				BCCCDE871E26464E0045F25E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
