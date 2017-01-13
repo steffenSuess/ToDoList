@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Standort"; ObjectID = "2W3-3C-KuZ"; */
+"2W3-3C-KuZ.text" = "Standort";
+
+/* Class = "UINavigationItem"; title = "My To-Do List"; ObjectID = "4aq-wE-4Im"; */
+"4aq-wE-4Im.title" = "My To-Do List";
+
+/* Class = "UILabel"; text = "Fällig"; ObjectID = "Ex6-g7-GOE"; */
+"Ex6-g7-GOE.text" = "Fällig";
+
+/* Class = "UINavigationItem"; title = "Aufgabe bearbeiten"; ObjectID = "HZd-Tc-6WK"; */
+"HZd-Tc-6WK.title" = "Aufgabe bearbeiten";
+
+/* Class = "UILabel"; text = "Titel"; ObjectID = "Uxk-eV-0QP"; */
+"Uxk-eV-0QP.text" = "Titel";
+
+/* Class = "UILabel"; text = "Notiz hinzufügen"; ObjectID = "dm1-uS-NYm"; */
+"dm1-uS-NYm.text" = "Notiz hinzufügen";
+
+/* Class = "UINavigationItem"; title = "MapKit"; ObjectID = "lH8-jC-oM2"; */
+"lH8-jC-oM2.title" = "MapKit";

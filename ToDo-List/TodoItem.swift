@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class TodoItem: NSObject {
-    let itemName: String
+    var itemName: String
     var completed: Bool
+    var pointAnnotation: MKPointAnnotation?
     
     init(itemName: String, completed: Bool = false) {
         self.itemName = itemName
         self.completed = completed
     }
-
 }

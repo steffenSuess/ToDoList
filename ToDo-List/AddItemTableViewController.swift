@@ -7,10 +7,35 @@
 //
 
 import UIKit
+import MapKit
 
 class AddItemTableViewController: UITableViewController {
     
     var todoItem: TodoItem = TodoItem(itemName: "")
+    
+    @IBAction func unwindToList(segue: UIStoryboardSegue) {
+        print("Unwinding")
+    }
+    
+    @IBAction func unwindAndAddLocation(segue: UIStoryboardSegue) {
+        let source = segue.source as! MapKitViewController
+        let indexpath = IndexPath(row: 1, section: 1)
+        let cell = tableView.cellForRow(at: indexpath)
+        if(source.pointAnnotation != nil && !(source.pointAnnotation.title?.isEmpty)!){
+            let pointAnnotation:MKPointAnnotation = source.pointAnnotation
+            self.todoItem.pointAnnotation = pointAnnotation
+            cell?.textLabel?.text = self.todoItem.pointAnnotation?.title
+            if(!(self.todoItem.pointAnnotation?.subtitle?.isEmpty)!){
+                cell?.detailTextLabel?.text = pointAnnotation.subtitle
+            }
+            self.tableView.reloadData()
+
+        }else{
+            cell?.textLabel?.text = "Standort"
+            cell?.detailTextLabel?.text = ""
+            self.todoItem.pointAnnotation = nil
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,14 +113,22 @@ class AddItemTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if(self.todoItem.pointAnnotation != nil){
+            if segue.identifier == "showMapKitView" {
+                
+                let controller = segue.destination as! UINavigationController
+                let mapKitViewController = controller.topViewController as! MapKitViewController
+                mapKitViewController.pointAnnotation = self.todoItem.pointAnnotation
+            }
+        }
     }
-    */
+    
 
 }
