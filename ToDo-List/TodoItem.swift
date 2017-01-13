@@ -13,6 +13,7 @@ class TodoItem: NSObject {
     var itemName: String
     var completed: Bool
     var pointAnnotation: MKPointAnnotation?
+    var date: Date?
     
     init(itemName: String, completed: Bool = false) {
         self.itemName = itemName

@@ -17,6 +17,18 @@ class AddItemTableViewController: UITableViewController {
         print("Unwinding")
     }
     
+    @IBAction func unwindAndAddDate(segue: UIStoryboardSegue) {
+        let source = segue.source as! SelectDateViewController
+        let indexpath = IndexPath(row: 0, section: 1)
+        let cell = tableView.cellForRow(at: indexpath)
+        let date:Date = source.dpSelectDate.date
+        self.todoItem.date = date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        cell?.detailTextLabel?.text = formatter.string(from: self.todoItem.date!)
+    }
+
+    
     @IBAction func unwindAndAddLocation(segue: UIStoryboardSegue) {
         let source = segue.source as! MapKitViewController
         let indexpath = IndexPath(row: 1, section: 1)
@@ -24,14 +36,14 @@ class AddItemTableViewController: UITableViewController {
         if(source.pointAnnotation != nil && !(source.pointAnnotation.title?.isEmpty)!){
             let pointAnnotation:MKPointAnnotation = source.pointAnnotation
             self.todoItem.pointAnnotation = pointAnnotation
-            cell?.textLabel?.text = self.todoItem.pointAnnotation?.title
+            cell?.detailTextLabel?.text = self.todoItem.pointAnnotation?.title
             if(!(self.todoItem.pointAnnotation?.subtitle?.isEmpty)!){
-                cell?.detailTextLabel?.text = pointAnnotation.subtitle
+                cell?.detailTextLabel?.text = (cell?.detailTextLabel?.text)! + ", " + pointAnnotation.subtitle!
             }
             self.tableView.reloadData()
 
         }else{
-            cell?.textLabel?.text = "Standort"
+            //cell?.textLabel?.text = "Standort"
             cell?.detailTextLabel?.text = ""
             self.todoItem.pointAnnotation = nil
         }
@@ -120,14 +132,16 @@ class AddItemTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if(self.todoItem.pointAnnotation != nil){
-            if segue.identifier == "showMapKitView" {
+            if (self.todoItem.pointAnnotation != nil && segue.identifier == "showMapKitView") {
                 
                 let controller = segue.destination as! UINavigationController
                 let mapKitViewController = controller.topViewController as! MapKitViewController
                 mapKitViewController.pointAnnotation = self.todoItem.pointAnnotation
+            }else if(self.todoItem.date != nil && segue.identifier == "showDateView"){
+                let controller = segue.destination as! UINavigationController
+                let selectDateViewController = controller.topViewController as! SelectDateViewController
+                selectDateViewController.currentDate = self.todoItem.date!
             }
-        }
     }
     
 

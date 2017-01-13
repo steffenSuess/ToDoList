@@ -112,22 +112,32 @@
                             </tableViewSection>
                             <tableViewSection id="A5U-D9-yj1">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LabelCell" textLabel="Ex6-g7-GOE" style="IBUITableViewCellStyleDefault" id="cJr-gJ-mEo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LabelCell" textLabel="Ex6-g7-GOE" detailTextLabel="APN-UW-5Yz" style="IBUITableViewCellStyleSubtitle" id="cJr-gJ-mEo">
                                         <rect key="frame" x="0.0" y="159" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cJr-gJ-mEo" id="luC-ps-d0Y">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fällig" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ex6-g7-GOE">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fällig am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ex6-g7-GOE">
+                                                    <rect key="frame" x="15" y="4" width="68" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="APN-UW-5Yz">
+                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="dLN-Bw-ZRl" kind="show" identifier="showDateView" id="W9j-6Z-qEB"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LabelCell" textLabel="2W3-3C-KuZ" detailTextLabel="OCe-Fo-gyz" style="IBUITableViewCellStyleSubtitle" id="eJA-qr-mMA">
                                         <rect key="frame" x="0.0" y="203" width="375" height="44"/>
@@ -214,7 +224,7 @@
                     <navigationItem key="navigationItem" title="MapKit" id="lH8-jC-oM2">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="P55-sg-7fb">
                             <connections>
-                                <segue destination="mfw-gd-yKg" kind="unwind" unwindAction="unwindToListWithSegue:" id="R0w-oF-XaA"/>
+                                <segue destination="mfw-gd-yKg" kind="unwind" identifier="" unwindAction="unwindToListWithSegue:" id="R0w-oF-XaA"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -239,6 +249,49 @@
                 <exit id="mfw-gd-yKg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5444" y="130.88455772113943"/>
+        </scene>
+        <!--Datum auswählen-->
+        <scene sceneID="hdK-tt-Szv">
+            <objects>
+                <viewController id="W7o-lo-q2E" customClass="SelectDateViewController" customModule="ToDo_List" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mfl-8a-nvQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="5EI-1Q-HCa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kqf-YI-Y5t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8EZ-sC-k7E">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="506022465.43730998">
+                                    <!--2017-01-13 17:47:45 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Datum auswählen" id="ecI-gX-Yhj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aas-h6-rO2">
+                            <connections>
+                                <segue destination="pYE-tg-JxU" kind="unwind" identifier="unwindToList" unwindAction="unwindToListWithSegue:" id="cBl-t9-e6t"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="n6T-BZ-wzq">
+                            <connections>
+                                <segue destination="pYE-tg-JxU" kind="unwind" identifier="unwindAndAddDate" unwindAction="unwindAndAddDateWithSegue:" id="Iq3-dF-WyU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dpSelectDate" destination="8EZ-sC-k7E" id="loi-Zt-bKl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nyu-CL-dn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="pYE-tg-JxU" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5444" y="887.40629685157433"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YE6-EN-teM">
@@ -275,6 +328,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFj-3T-p70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4504.8000000000002" y="130.88455772113943"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JXp-i7-cn3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dLN-Bw-ZRl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7WR-Bv-avg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="W7o-lo-q2E" kind="relationship" relationship="rootViewController" id="8kg-b0-Clt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5os-Lb-xHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4505" y="888"/>
         </scene>
     </scenes>
 </document>
