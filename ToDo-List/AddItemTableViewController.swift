@@ -9,41 +9,58 @@
 import UIKit
 import MapKit
 
-class AddItemTableViewController: UITableViewController {
+class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     var todoItem: TodoItem = TodoItem(itemName: "")
+    
+    @IBOutlet weak var tfTitleTextField: UITextField!
     
     @IBAction func unwindToList(segue: UIStoryboardSegue) {
         print("Unwinding")
     }
     
+    @IBAction func unwindAndAddNote(segue: UIStoryboardSegue) {
+        let source = segue.source as! AddNoteViewController
+        let indexpath = IndexPath(row: 0, section: 1)
+        let cell = tableView.cellForRow(at: indexpath)
+        let note:String = source.tvNote.text
+        self.todoItem.note = note
+        
+        cell?.textLabel?.text = self.todoItem.note
+        cell?.textLabel?.textColor = UIColor.darkText
+        self.tableView.reloadData()
+    }
+    
     @IBAction func unwindAndAddDate(segue: UIStoryboardSegue) {
         let source = segue.source as! SelectDateViewController
-        let indexpath = IndexPath(row: 0, section: 1)
+        let indexpath = IndexPath(row: 0, section: 2)
         let cell = tableView.cellForRow(at: indexpath)
         let date:Date = source.dpSelectDate.date
         self.todoItem.date = date
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        cell?.detailTextLabel?.text = formatter.string(from: self.todoItem.date!)
+        cell?.textLabel?.text = formatter.string(from: self.todoItem.date!)
+        cell?.textLabel?.textColor = UIColor.darkText
     }
 
     
     @IBAction func unwindAndAddLocation(segue: UIStoryboardSegue) {
         let source = segue.source as! MapKitViewController
-        let indexpath = IndexPath(row: 1, section: 1)
+        let indexpath = IndexPath(row: 0, section: 3)
         let cell = tableView.cellForRow(at: indexpath)
         if(source.pointAnnotation != nil && !(source.pointAnnotation.title?.isEmpty)!){
             let pointAnnotation:MKPointAnnotation = source.pointAnnotation
             self.todoItem.pointAnnotation = pointAnnotation
-            cell?.detailTextLabel?.text = self.todoItem.pointAnnotation?.title
+            cell?.textLabel?.text = self.todoItem.pointAnnotation?.title
+            cell?.textLabel?.textColor = UIColor.darkText
             if(!(self.todoItem.pointAnnotation?.subtitle?.isEmpty)!){
-                cell?.detailTextLabel?.text = (cell?.detailTextLabel?.text)! + ", " + pointAnnotation.subtitle!
+                cell?.detailTextLabel?.text = pointAnnotation.subtitle!
             }
             self.tableView.reloadData()
 
         }else{
-            //cell?.textLabel?.text = "Standort"
+            cell?.textLabel?.text = "Standort..."
+            cell?.textLabel?.textColor = UIColor.lightGray
             cell?.detailTextLabel?.text = ""
             self.todoItem.pointAnnotation = nil
         }
@@ -51,7 +68,10 @@ class AddItemTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem?.isEnabled = false;
+        tfTitleTextField.delegate = self
 
+        tfTitleTextField.becomeFirstResponder()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -62,6 +82,24 @@ class AddItemTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if(textField.text != nil && !(textField.text?.isEmpty)!){
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        self.view.endEditing(true)
+        return false
     }
     
     
@@ -141,7 +179,13 @@ class AddItemTableViewController: UITableViewController {
                 let controller = segue.destination as! UINavigationController
                 let selectDateViewController = controller.topViewController as! SelectDateViewController
                 selectDateViewController.currentDate = self.todoItem.date!
-            }
+            }else if (self.todoItem.note != nil && segue.identifier == "showNoteView"){
+                let controller = segue.destination as! UINavigationController
+                let selectDateViewController = controller.topViewController as! AddNoteViewController
+                selectDateViewController.currentNote = self.todoItem.note!
+            }else if(segue.identifier == "unwindAndAddToListWithSegue"){
+                self.todoItem.itemName = tfTitleTextField.text!
+        }
     }
     
 

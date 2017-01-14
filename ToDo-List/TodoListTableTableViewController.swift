@@ -25,13 +25,12 @@ class TodoListTableTableViewController: UITableViewController {
     }
     
     @IBAction func unwindAndAddToList(segue: UIStoryboardSegue) {
-        let source = segue.source as! AddTodoItemViewController
+        let source = segue.source as! AddItemTableViewController
         let todoItem:TodoItem = source.todoItem
         
-        if todoItem.itemName != "" {
-            self.todoItems.append(todoItem)
-            self.tableView.reloadData()
-        }
+        
+        self.todoItems.append(todoItem)
+        self.tableView.reloadData()
     }
 
     override func viewDidLoad() {

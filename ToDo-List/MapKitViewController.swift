@@ -55,10 +55,6 @@ class MapKitViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             self.locationManager.startUpdatingLocation()
         }
         else{
-            let button = UIButton(type: UIButtonType.custom)
-            button.addTarget(self, action: #selector(test), for: .touchUpInside)
-            let barButton = UIBarButtonItem(customView: button)
-            barButton.title = "Löschen"
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Löschen", style: .plain, target: self, action: #selector(test))
             self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
             self.mapView.centerCoordinate = self.pointAnnotation.coordinate

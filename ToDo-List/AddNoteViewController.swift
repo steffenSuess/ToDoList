@@ -1,26 +1,28 @@
 //
-//  SelectDateViewController.swift
+//  AddNoteViewController.swift
 //  ToDo-List
 //
-//  Created by Steffen Süß on 13.01.17.
+//  Created by Steffen Süß on 14.01.17.
 //  Copyright © 2017 Steffen Süß. All rights reserved.
 //
 
 import UIKit
 
-class SelectDateViewController: UIViewController {
+class AddNoteViewController: UIViewController {
     
-    @IBOutlet weak var dpSelectDate: UIDatePicker!
-    var currentDate: Date?
+    @IBOutlet weak var tvNote: UITextView!
+    var currentNote: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if currentDate != nil{
-            dpSelectDate.date = currentDate!
+        
+        tvNote.becomeFirstResponder()
+        
+        if currentNote != nil{
+            tvNote.text = currentNote!
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Löschen", style: .plain, target: self, action: #selector(doPerformSegue))
         }
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -30,8 +32,9 @@ class SelectDateViewController: UIViewController {
     }
     
     func doPerformSegue(){
-        self.performSegue(withIdentifier: "unwindToList", sender: self)
+        self.performSegue(withIdentifier: "unwindNoteToList", sender: self)
     }
+    
 
     
     // MARK: - Navigation
@@ -40,13 +43,15 @@ class SelectDateViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if(navigationItem.leftBarButtonItem?.title == "Löschen" && segue.identifier == "unwindToList"){
+        
+        if(navigationItem.leftBarButtonItem?.title == "Löschen" && segue.identifier == "unwindNoteToList"){
             let controller = segue.destination as! AddItemTableViewController
-            controller.todoItem.date = nil
-            let indexpath = IndexPath(row: 0, section: 2)
+            controller.todoItem.note = nil
+            let indexpath = IndexPath(row: 0, section: 1)
             let cell = controller.tableView.cellForRow(at: indexpath)
-            cell?.textLabel?.text = "Fällig am..."
+            cell?.textLabel?.text = "Notiz..."
             cell?.textLabel?.textColor = UIColor.lightGray
+            controller.tableView.reloadData()
         }
     }
     
