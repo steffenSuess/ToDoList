@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC3952C71E2B82B700976C29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3952C61E2B82B700976C29 /* CoreData.framework */; };
+		BC3952EE1E2B888900976C29 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC3952EC1E2B888900976C29 /* Model.xcdatamodeld */; };
+		BC3952F41E2CE64A00976C29 /* FinishedTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3952F31E2CE64A00976C29 /* FinishedTasksTableViewController.swift */; };
 		BC54BAEE1E294BAF00B65EAE /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54BAED1E294BAF00B65EAE /* SelectDateViewController.swift */; };
 		BC585C661E2AB6F800D99480 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC585C651E2AB6F800D99480 /* AddNoteViewController.swift */; };
 		BCCCDE771E26464E0045F25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE761E26464E0045F25E /* AppDelegate.swift */; };
 		BCCCDE7C1E26464E0045F25E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCCCDE7A1E26464E0045F25E /* Main.storyboard */; };
 		BCCCDE7E1E26464E0045F25E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCCCDE7D1E26464E0045F25E /* Assets.xcassets */; };
 		BCCCDE811E26464E0045F25E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCCCDE7F1E26464E0045F25E /* LaunchScreen.storyboard */; };
-		BCCCDE8B1E264B530045F25E /* AddTodoItemViewControllerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE8A1E264B530045F25E /* AddTodoItemViewControllerOLD.swift */; };
 		BCCCDE8D1E264C3F0045F25E /* TodoListTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE8C1E264C3F0045F25E /* TodoListTableTableViewController.swift */; };
 		BCCCDE8F1E264DE50045F25E /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE8E1E264DE50045F25E /* TodoItem.swift */; };
 		BCCCDE931E2670D60045F25E /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCDE921E2670D60045F25E /* AddItemTableViewController.swift */; };
@@ -21,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC3952C61E2B82B700976C29 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BC3952ED1E2B888900976C29 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BC3952F31E2CE64A00976C29 /* FinishedTasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedTasksTableViewController.swift; sourceTree = "<group>"; };
 		BC54BAEB1E29115B00B65EAE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		BC54BAEC1E29115B00B65EAE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BC54BAED1E294BAF00B65EAE /* SelectDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
@@ -31,7 +36,6 @@
 		BCCCDE7D1E26464E0045F25E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCCCDE801E26464E0045F25E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCCCDE821E26464E0045F25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BCCCDE8A1E264B530045F25E /* AddTodoItemViewControllerOLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTodoItemViewControllerOLD.swift; path = ../AddTodoItemViewControllerOLD.swift; sourceTree = "<group>"; };
 		BCCCDE8C1E264C3F0045F25E /* TodoListTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListTableTableViewController.swift; sourceTree = "<group>"; };
 		BCCCDE8E1E264DE50045F25E /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		BCCCDE921E2670D60045F25E /* AddItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
@@ -43,17 +47,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC3952C71E2B82B700976C29 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC3952C51E2B82B600976C29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC3952C61E2B82B700976C29 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BCCCDE6A1E26464E0045F25E = {
 			isa = PBXGroup;
 			children = (
 				BCCCDE751E26464E0045F25E /* ToDo-List */,
 				BCCCDE741E26464E0045F25E /* Products */,
+				BC3952C51E2B82B600976C29 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,7 +82,6 @@
 		BCCCDE751E26464E0045F25E /* ToDo-List */ = {
 			isa = PBXGroup;
 			children = (
-				BCCCDE8A1E264B530045F25E /* AddTodoItemViewControllerOLD.swift */,
 				BCCCDE761E26464E0045F25E /* AppDelegate.swift */,
 				BCCCDE7A1E26464E0045F25E /* Main.storyboard */,
 				BCCCDE7D1E26464E0045F25E /* Assets.xcassets */,
@@ -80,6 +93,8 @@
 				BCCCDE941E268C500045F25E /* MapKitViewController.swift */,
 				BC54BAED1E294BAF00B65EAE /* SelectDateViewController.swift */,
 				BC585C651E2AB6F800D99480 /* AddNoteViewController.swift */,
+				BC3952EC1E2B888900976C29 /* Model.xcdatamodeld */,
+				BC3952F31E2CE64A00976C29 /* FinishedTasksTableViewController.swift */,
 			);
 			path = "ToDo-List";
 			sourceTree = "<group>";
@@ -157,13 +172,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCCCDE951E268C500045F25E /* MapKitViewController.swift in Sources */,
+				BC3952F41E2CE64A00976C29 /* FinishedTasksTableViewController.swift in Sources */,
 				BC54BAEE1E294BAF00B65EAE /* SelectDateViewController.swift in Sources */,
 				BCCCDE8F1E264DE50045F25E /* TodoItem.swift in Sources */,
+				BC3952EE1E2B888900976C29 /* Model.xcdatamodeld in Sources */,
 				BCCCDE931E2670D60045F25E /* AddItemTableViewController.swift in Sources */,
 				BC585C661E2AB6F800D99480 /* AddNoteViewController.swift in Sources */,
 				BCCCDE771E26464E0045F25E /* AppDelegate.swift in Sources */,
 				BCCCDE8D1E264C3F0045F25E /* TodoListTableTableViewController.swift in Sources */,
-				BCCCDE8B1E264B530045F25E /* AddTodoItemViewControllerOLD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +346,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC3952EC1E2B888900976C29 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC3952ED1E2B888900976C29 /* Model.xcdatamodel */,
+			);
+			currentVersion = BC3952ED1E2B888900976C29 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BCCCDE6B1E26464E0045F25E /* Project object */;
 }

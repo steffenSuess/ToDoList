@@ -11,9 +11,12 @@ import MapKit
 
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
-    var todoItem: TodoItem = TodoItem(itemName: "")
+    var todoItem: TodoItem!
     
     @IBOutlet weak var tfTitleTextField: UITextField!
+    @IBOutlet weak var tvcNote: UITableViewCell!
+    @IBOutlet weak var tvcDate: UITableViewCell!
+    @IBOutlet weak var tvcLocation: UITableViewCell!
     
     @IBAction func unwindToList(segue: UIStoryboardSegue) {
         print("Unwinding")
@@ -21,26 +24,21 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func unwindAndAddNote(segue: UIStoryboardSegue) {
         let source = segue.source as! AddNoteViewController
-        let indexpath = IndexPath(row: 0, section: 1)
-        let cell = tableView.cellForRow(at: indexpath)
         let note:String = source.tvNote.text
         self.todoItem.note = note
-        
-        cell?.textLabel?.text = self.todoItem.note
-        cell?.textLabel?.textColor = UIColor.darkText
+        tvcNote.textLabel?.text = self.todoItem.note
+        tvcNote.textLabel?.textColor = UIColor.darkText
         self.tableView.reloadData()
     }
     
     @IBAction func unwindAndAddDate(segue: UIStoryboardSegue) {
         let source = segue.source as! SelectDateViewController
-        let indexpath = IndexPath(row: 0, section: 2)
-        let cell = tableView.cellForRow(at: indexpath)
         let date:Date = source.dpSelectDate.date
         self.todoItem.date = date
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        cell?.textLabel?.text = formatter.string(from: self.todoItem.date!)
-        cell?.textLabel?.textColor = UIColor.darkText
+        tvcDate.textLabel?.text = formatter.string(from: self.todoItem.date!)
+        tvcDate.textLabel?.textColor = UIColor.darkText
     }
 
     
@@ -70,8 +68,34 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem?.isEnabled = false;
         tfTitleTextField.delegate = self
-
-        tfTitleTextField.becomeFirstResponder()
+        tfTitleTextField.addTarget(self, action: #selector(textFieldDidChange(sender:)), for: .editingChanged)
+        
+        if(self.todoItem != nil){
+            tfTitleTextField.text = self.todoItem.itemName
+            if self.todoItem.note != nil{
+                tvcNote.textLabel?.text = self.todoItem.note
+                tvcNote.textLabel?.textColor = UIColor.darkText
+                
+            }
+            if self.todoItem.date != nil{
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd.MM.yyyy"
+                tvcDate.textLabel?.text = formatter.string(from: self.todoItem.date!)
+                tvcDate.textLabel?.textColor = UIColor.darkText
+            }
+            if self.todoItem.pointAnnotation != nil{
+                tvcLocation.textLabel?.text = self.todoItem.pointAnnotation?.title
+                tvcLocation.textLabel?.textColor = UIColor.darkText
+                if(self.todoItem.pointAnnotation?.subtitle != nil){
+                    tvcLocation.detailTextLabel?.text = self.todoItem.pointAnnotation?.subtitle
+                }
+            }
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Löschen", style: .plain, target: self, action: #selector(doPerformSegue))
+        }else{
+            todoItem = TodoItem(itemName: "")
+            tfTitleTextField.becomeFirstResponder()
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -93,14 +117,22 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if(textField.text != nil && !(textField.text?.isEmpty)!){
+        self.view.endEditing(true)
+        return true;
+    }
+    
+    func textFieldDidChange(sender: UITextField) {
+        if sender.text != nil && !(sender.text?.isEmpty)! {
             navigationItem.rightBarButtonItem?.isEnabled = true
-        }else {
+        }else{
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
-        self.view.endEditing(true)
-        return false
     }
+    
+    func doPerformSegue(){
+        self.performSegue(withIdentifier: "unwindToTaskList", sender: self)
+    }
+
     
     
     /*
