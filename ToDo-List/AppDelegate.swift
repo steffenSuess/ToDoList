@@ -83,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if(todaysResults.count > 0){
+            var i = 0
             for result in todaysResults{
                 let content = UNMutableNotificationContent()
                 content.title = "Erinnerung"
@@ -90,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 content.body = result.value(forKey: "name") as! String
                 content.sound = UNNotificationSound.default()
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
-                let identifier = "UYLLocalNotification" + content.subtitle
+                let identifier = "Notification"+String(i)
                 let notificationRequest = UNNotificationRequest(identifier: identifier,
                                                     content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(notificationRequest, withCompletionHandler: { (error) in
@@ -98,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         // Something went wrong
                     }
                 })
+                i += 1
 
             }
         }
