@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .sound];
+        center.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            }
+        }
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                // Notifications not allowed
+            }
+        }
+        
+        
+        
         return true
     }
     
@@ -29,6 +48,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        var context:NSManagedObjectContext!
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ToDoTask")
+        
+        var results:[NSManagedObject] = []
+        
+        var todaysResults:[NSManagedObject] = []
+        
+        context = self.persistentContainer.viewContext
+        let predicate = NSPredicate(format: "isDone == %@", false as CVarArg)
+        request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        
+        do{
+            results = try context.fetch(request) as! [NSManagedObject]
+        }catch{
+            print("Error on saving Core Data")
+        }
+        
+        if(results.count > 0){
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = DateFormatter.Style.none
+            dateFormatter.dateStyle = DateFormatter.Style.short
+            for result in results{
+                let date = result.value(forKey: "date") as? Date
+                if(date != nil){
+                    if(dateFormatter.string(from: date!) == dateFormatter.string(from: Date())){
+                        todaysResults.append(result)
+                    }
+                }
+            }
+        }
+
+        if(todaysResults.count > 0){
+            for result in todaysResults{
+                let content = UNMutableNotificationContent()
+                content.title = "Erinnerung"
+                //content.subtitle = result.value(forKey: "name") as! String
+                content.body = result.value(forKey: "name") as! String
+                content.sound = UNNotificationSound.default()
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+                let identifier = "UYLLocalNotification" + content.subtitle
+                let notificationRequest = UNNotificationRequest(identifier: identifier,
+                                                    content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(notificationRequest, withCompletionHandler: { (error) in
+                    if error != nil {
+                        // Something went wrong
+                    }
+                })
+
+            }
+        }
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
