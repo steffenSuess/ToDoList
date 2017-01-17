@@ -55,7 +55,7 @@ class MapKitViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             self.locationManager.startUpdatingLocation()
         }
         else{
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Löschen", style: .plain, target: self, action: #selector(test))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Löschen", style: .plain, target: self, action: #selector(doPerformSegue))
             self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
             self.mapView.centerCoordinate = self.pointAnnotation.coordinate
             self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
@@ -76,8 +76,8 @@ class MapKitViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         
     }
     
-    func test(){
-        self.performSegue(withIdentifier: "unwindAndAddLocation", sender: self)
+    func doPerformSegue(){
+        self.performSegue(withIdentifier: "unwindLocationToList", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -199,8 +199,15 @@ class MapKitViewController: UIViewController, UISearchBarDelegate, UITableViewDe
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
-        if(navigationItem.leftBarButtonItem?.title == "Löschen"){
-            pointAnnotation = nil
+        if(navigationItem.leftBarButtonItem?.title == "Löschen" && segue.identifier == "unwindLocationToList"){
+            let controller = segue.destination as! AddItemTableViewController
+            controller.todoItem.pointAnnotation = nil
+            let indexpath = IndexPath(row: 0, section: 3)
+            let cell = controller.tableView.cellForRow(at: indexpath)
+            cell?.textLabel?.text = "Standort..."
+            cell?.textLabel?.textColor = UIColor.lightGray
+            cell?.detailTextLabel?.text = ""
+            controller.tableView.reloadData()
         }
      }
     
